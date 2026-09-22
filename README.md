@@ -66,3 +66,4 @@ Hold hvert bilde under 500 kB.
 ## Hva dette koster
 
 GitHub Pages og Actions: gratis. Domene: ca. 150 kr/år. Ingenting annet.
+# BrautendeBar
