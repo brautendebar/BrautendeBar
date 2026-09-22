@@ -1,0 +1,95 @@
+{
+  "navn": "Brautende bar",
+  "kicker": "Ølbar · Maridalsveien 2, Oslo",
+  "instagram": "brautendebar",
+  "epost": "snausenas@gmail.com",
+  "hero": "Vafler, dildoer og masse faenskap. Kom som du er, dra når du vil.",
+  "apningstider": [
+    {
+      "dager": "Tirsdag – torsdag",
+      "tid": "18:00 – 24:00",
+      "fra": 18,
+      "til": 24,
+      "ukedager": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "dager": "Fredag – lørdag",
+      "tid": "16:00 – 03:00",
+      "fra": 16,
+      "til": 27,
+      "ukedager": [
+        5,
+        6
+      ]
+    },
+    {
+      "dager": "Søndag – mandag",
+      "tid": "stengt",
+      "ukedager": []
+    }
+  ],
+  "om": {
+    "tittel": "Ingen konsept. Bare en bar.",
+    "avsnitt": [
+      "Lokalet har hatt flere liv. Fram til 2003 var det en ulovlig spillebule. Taxi Takeaway åpnet her i 2005 og holdt på til 2017, før Johan Golden tok over med Saska. Fra 2020 het det Barflag.",
+      "I 2026 ble det Brautende bar. Vi har ikke pusset opp mer enn nødvendig — veggene har sett verre ting enn deg."
+    ],
+    "bilde": "bilder/interior.jpg",
+    "historie": [
+      {
+        "ar": "– 2003",
+        "hva": "Ulovlig spillebule"
+      },
+      {
+        "ar": "2005 – 2017",
+        "hva": "Taxi Takeaway"
+      },
+      {
+        "ar": "2017 – 2020",
+        "hva": "Saska"
+      },
+      {
+        "ar": "2020 – 2026",
+        "hva": "Barflag"
+      },
+      {
+        "ar": "2026 –",
+        "hva": "Brautende bar"
+      }
+    ]
+  },
+  "selskap": {
+    "tittel": "Lei hele baren",
+    "tekst": "Bakrommet tar 30, hele baren tar 80. Vi fikser fatøl, pizza fra nabolaget og et anlegg du kan koble telefonen til. Ingen minstepris på tirsdager.",
+    "priser": [
+      {
+        "hva": "Bakrommet, 30 pers",
+        "pris": "fra 4 000,–"
+      },
+      {
+        "hva": "Hele baren, 80 pers",
+        "pris": "fra 12 000,–"
+      },
+      {
+        "hva": "Fatøl og mat",
+        "pris": "etter forbruk"
+      }
+    ],
+    "bilde": "bilder/selskap.jpg"
+  },
+  "adresse": {
+    "gate": "Maridalsveien 2",
+    "sted": "0178 Oslo",
+    "kart": "https://maps.google.com/?q=Maridalsveien+2,+0178+Oslo",
+    "reise": "Fem minutters gange fra Youngstorget. Trikk 11 og 12 til Brugata. Ingen egen parkering, og det er helt med vilje."
+  },
+  "heroBilde": "bilder/hero.jpg",
+  "footer": [
+    "Brautende bar · Maridalsveien 2, Oslo",
+    "18 år · vi ber om legitimasjon"
+  ]
+}
