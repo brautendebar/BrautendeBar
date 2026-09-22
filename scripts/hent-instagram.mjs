@@ -5,6 +5,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const TOKEN = process.env.IG_TOKEN;
 const ANTALL = 6;
 if (!TOKEN) { console.error('Mangler IG_TOKEN. Legg den inn som repository secret.'); process.exit(1); }
+console.log('DEBUG lengde:', TOKEN.length, 'starter med:', TOKEN.slice(0, 4), 'inneholder mellomrom/linjeskift:', /\s/.test(TOKEN));
 
 const felter = 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp';
 const params = new URLSearchParams({ fields: felter, limit: String(ANTALL), access_token: TOKEN });
