@@ -7,7 +7,8 @@ const ANTALL = 6;
 if (!TOKEN) { console.error('Mangler IG_TOKEN. Legg den inn som repository secret.'); process.exit(1); }
 
 const felter = 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp';
-const res = await fetch(`https://graph.instagram.com/v21.0/me/media?fields=${felter}&limit=${ANTALL}&access_token=${TOKEN}`);
+const params = new URLSearchParams({ fields: felter, limit: String(ANTALL), access_token: TOKEN });
+const res = await fetch(`https://graph.instagram.com/v21.0/me/media?${params}`);
 if (!res.ok) { console.error('Instagram svarte', res.status, await res.text()); process.exit(1); }
 
 const { data = [] } = await res.json();
