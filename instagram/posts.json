@@ -37,7 +37,8 @@
     "permalink": "https://www.instagram.com/reel/DbgpEmHsQ-8/",
     "timestamp": "2026-08-01T19:57:43+0000",
     "bilde": "instagram/bilder/18122477452699242.jpg",
-    "type": "VIDEO"
+    "type": "VIDEO",
+    "video": "instagram/bilder/18122477452699242.mp4"
   },
   {
     "id": "18108287792516664",
@@ -45,6 +46,7 @@
     "permalink": "https://www.instagram.com/reel/DbgkjJ0sRjp/",
     "timestamp": "2026-08-01T19:17:50+0000",
     "bilde": "instagram/bilder/18108287792516664.jpg",
-    "type": "VIDEO"
+    "type": "VIDEO",
+    "video": "instagram/bilder/18108287792516664.mp4"
   }
 ]
