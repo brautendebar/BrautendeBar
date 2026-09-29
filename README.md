@@ -7,11 +7,10 @@ Instagram-postene hentes automatisk hver 6. time av en GitHub Action.
 
     index.html                        Hele siden
     innhold.json                      All tekst: åpningstider, priser, adresse, arrangementer
-    bilder/                           Egne bilder (hero.jpg, interior.jpg, selskap.jpg)
     instagram/posts.json              Lages automatisk
-    instagram/bilder/                 Lages automatisk
+    instagram/bilder/                 Lages automatisk — bilder og videoer fra Instagram
     scripts/hent-instagram.mjs        Henter fra Instagram
-    .github/workflows/instagram.yml   Kjører henteskriptet på timeplan
+    .github/workflows/instagram.yml   Kjører henteskriptet hver time
 
 ## 1. Legg filene i et repo
 
@@ -59,9 +58,10 @@ Siden oppdateres i løpet av et minutt.
 
 ## Bilder
 
-Legg tre bilder i `bilder/`: `hero.jpg` (bredt, ca. 2400×1400), `interior.jpg` (portrett,
-ca. 1600×2000), `selskap.jpg` (ca. 1800×1200). Mangler de, vises stripete plassholdere.
-Hold hvert bilde under 500 kB.
+Alt bildemateriale på siden (hero, «Veggen»-mosaikken, privat leie-bildet) hentes automatisk
+fra de siste postene på Instagram — ingen egne bilder å laste opp. Videoer (reels) spilles
+av direkte i mosaikken, uten lyd. Før Instagram-jobben har kjørt første gang vises
+stripete plassholdere.
 
 ## Hva dette koster
 
