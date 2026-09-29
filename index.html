@@ -11,112 +11,77 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-  :root { --bg:#0b0a09; --ink:#f2ede4; --dim:#cdc4b6; --mute:#8d8377; --line:#26221d; --line2:#3a342c; --brass:#d9a752; }
+  :root { --bg:#0b0a09; --ink:#f2ede4; --dim:#cdc4b6; --mute:#8d8377; --line:#26221d; --line2:#3a342c; --brass:#d9a752; --red:#e3262b; }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:Archivo,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   a { color:var(--brass); text-decoration:none; }
   a:hover { color:var(--ink); }
   .mono { font-family:'JetBrains Mono',ui-monospace,monospace; }
   header { position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px clamp(16px,4vw,40px); background:rgba(11,10,9,.86); backdrop-filter:blur(10px); }
-  header nav { display:flex; gap:clamp(14px,2vw,24px); flex-wrap:wrap; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
-  .wordmark { font-weight:800; letter-spacing:-.02em; font-size:18px; }
+  .wordmark { font-weight:800; letter-spacing:-.02em; font-size:18px; color:var(--red); }
+  header nav { display:flex; gap:clamp(12px,2vw,20px); align-items:center; flex-wrap:wrap; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); }
   h2 { font-weight:800; letter-spacing:-.03em; line-height:1.04; }
   .btn { display:inline-block; padding:13px 22px; border-radius:999px; background:var(--brass); color:var(--bg); font-weight:600; font-size:14px; }
   .btn:hover { background:var(--ink); color:var(--bg); }
-  .status { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid var(--line2); background:rgba(11,10,9,.55); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+  .status { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border:1px solid var(--line2); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); }
   .dot { width:8px; height:8px; border-radius:999px; background:#5b544b; flex:none; }
   .dot.open { background:var(--brass); }
   .pill { padding:8px 12px; border:1px solid var(--line2); background:rgba(11,10,9,.55); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
 
-  #hero { position:relative; margin:clamp(8px,1.6vw,12px); min-height:clamp(460px,72vh,780px); display:flex; flex-direction:column; justify-content:space-between; padding:clamp(20px,3.5vw,36px); background:repeating-linear-gradient(115deg,#151310 0 14px,#1b1815 14px 28px); background-size:cover; background-position:center 25%; }
-  #hero::after { content:''; position:absolute; inset:0; z-index:0; background:linear-gradient(to top, rgba(11,10,9,.95) 8%, rgba(11,10,9,.05) 55%); }
-  #hero > * { position:relative; z-index:1; }
+  #hero { position:relative; margin:clamp(8px,1.6vw,12px); }
+  #hero-collage { display:flex; flex-wrap:wrap; gap:6px; }
+  #hero-collage > div { flex:1 1 33%; min-width:110px; overflow:hidden; background:repeating-linear-gradient(115deg,#171412 0 12px,#1d1917 12px 24px); background-size:cover; background-position:center; position:relative; }
+  #hero-collage img, #hero-collage video { display:block; width:100%; height:100%; object-fit:cover; }
+  #hero-collage .ph-txt { position:absolute; inset:0; display:flex; align-items:flex-end; padding:10px; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--mute); }
+  #hero-overlay { position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box; padding:clamp(20px,3.5vw,36px); pointer-events:none; }
+  #hero-overlay::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(to top, rgba(11,10,9,.95) 8%, rgba(11,10,9,.05) 45%); }
+  #hero-overlay > * { pointer-events:auto; }
   .hero-top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap; }
-  h1 { margin:0; font-size:clamp(52px,13vw,150px); line-height:.86; font-weight:800; letter-spacing:-.035em; }
-  .lead { font-size:clamp(16px,2.2vw,20px); line-height:1.45; max-width:44ch; color:var(--ink); margin:20px 0 0; text-wrap:pretty; }
+  h1 { margin:0; font-size:clamp(44px,11vw,150px); line-height:.86; font-weight:800; letter-spacing:-.035em; color:var(--red); -webkit-text-stroke:4px var(--bg); paint-order:stroke fill; text-shadow:0 4px 24px rgba(11,10,9,.6); }
+  .lead { font-size:clamp(15px,2vw,20px); line-height:1.45; max-width:44ch; color:var(--ink); margin:16px 0 0; text-wrap:pretty; -webkit-text-stroke:2px var(--bg); paint-order:stroke fill; text-shadow:0 2px 12px rgba(11,10,9,.6); }
 
   #ticket { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); margin:0 clamp(8px,1.6vw,12px); border:1px solid var(--line2); }
   #ticket .cell { padding:20px 22px; border-right:1px solid var(--line2); border-bottom:1px solid var(--line2); }
-  #ticket .cell:last-child, #ticket .cell:nth-last-child(-n+1) { border-right:1px solid var(--line2); }
   #ticket .cell .dag { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); margin-bottom:8px; }
   #ticket .cell .tid { font-size:16px; }
   #ticket .cell .tid.on { color:var(--brass); }
   #ticket .cell .tid:not(.on) { color:var(--dim); }
 
-  #vegg { padding:clamp(8px,1.6vw,12px); }
-  .vegg-head { display:flex; align-items:baseline; justify-content:space-between; padding:24px 12px; flex-wrap:wrap; gap:12px; }
-  .vegg-head h2 { margin:0; font-size:clamp(32px,5vw,44px); }
-  .vegg-head .note { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--mute); }
-
-  #mosaic { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-auto-rows:170px; grid-auto-flow:dense; gap:10px; }
-  @media (max-width:900px) { #mosaic { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-  @media (max-width:560px) {
-    #mosaic { grid-template-columns:1fr; }
-    #mosaic > * { grid-column:auto !important; grid-row:auto !important; min-height:260px; }
-    .mos-inline-only { display:flex; }
-    #apningstider, #selskap { display:none; }
-  }
-  .mos-inline-only { display:none; }
-  .mos-text { background:#141210; border:1px solid #2e2823; padding:24px; display:flex; flex-direction:column; justify-content:center; }
-  .mos-text .kicker { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); margin-bottom:10px; }
-  .mos-text h3 { margin:0; font-size:clamp(20px,2.4vw,28px); line-height:1.1; letter-spacing:-.02em; font-weight:800; }
-  .mos-hist { display:flex; flex-direction:column; gap:8px; }
-  .mos-hist .r { display:flex; gap:14px; font-size:13px; }
-  .mos-hist .r .ar { color:var(--mute); min-width:88px; }
-  .mos-hist .r .hva { color:var(--dim); }
-  .mos-hist .r:last-child .ar, .mos-hist .r:last-child .hva { color:var(--brass); }
-  .mos-img { position:relative; display:block; overflow:hidden; border:1px solid #2e2823; background:repeating-linear-gradient(115deg,#171412 0 12px,#1d1917 12px 24px); background-size:cover; background-position:center; }
-  .mos-img video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .mos-img:hover { border-color:var(--brass); }
-  .mos-img .veil { position:absolute; inset:0; z-index:1; background:linear-gradient(to top, rgba(11,10,9,.88), rgba(11,10,9,0) 55%); display:flex; flex-direction:column; justify-content:flex-end; padding:12px; }
-  .mos-img .cap { font-size:12px; line-height:1.4; color:var(--ink); }
-  .mos-img .meta { font-size:11px; color:var(--dim); margin-top:6px; }
-  .mos-follow { background:#141210; border:1px solid #2e2823; padding:24px; display:flex; flex-direction:column; justify-content:center; gap:8px; }
-  .mos-follow .kicker { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); }
-  .mos-follow .handle { font-size:22px; font-weight:800; letter-spacing:-.02em; color:var(--ink); }
-  .mos-follow .go { font-size:12px; }
-
-  #selskap { margin:32px clamp(8px,1.6vw,12px) clamp(8px,1.6vw,12px); display:flex; flex-wrap:wrap; border:1px solid var(--line2); }
-  #selskap .bilde { width:320px; flex-grow:1; min-width:260px; height:280px; object-fit:cover; background:repeating-linear-gradient(115deg,#141210 0 12px,#191614 12px 24px); background-size:cover; background-position:center; }
-  #selskap .inner { flex-grow:999; min-width:320px; padding:clamp(24px,3vw,36px); display:flex; flex-direction:column; justify-content:center; gap:20px; }
+  #selskap { margin:clamp(20px,3vw,32px) clamp(8px,1.6vw,12px) clamp(8px,1.6vw,12px); border:1px solid var(--line2); padding:clamp(24px,3.5vw,40px); }
   #selskap .kicker { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); margin-bottom:12px; }
-  #selskap h2 { margin:0 0 12px; font-size:clamp(26px,3.2vw,36px); }
-  #selskap p { margin:0; font-size:16px; line-height:1.6; color:var(--dim); max-width:56ch; }
-  #selskap .priser { display:flex; flex-wrap:wrap; gap:20px 24px; font-size:13px; }
+  #selskap h2 { margin:0 0 12px; font-size:clamp(26px,3.6vw,38px); }
+  #selskap p { margin:0 0 20px; font-size:16px; line-height:1.6; color:var(--dim); max-width:60ch; }
+  #selskap .priser { display:flex; flex-wrap:wrap; gap:16px 28px; font-size:13px; margin-bottom:24px; }
   #selskap .priser span { color:var(--dim); }
   #selskap .priser b { color:var(--brass); font-weight:500; }
 
-  #kart { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line); }
-  @media (max-width:700px) { #kart { grid-template-columns:1fr; } }
-  #kart .info { padding:clamp(28px,5vw,64px) clamp(16px,4vw,40px); }
-  #kart .info h2 { margin:0 0 24px; font-size:clamp(28px,4vw,42px); }
-  #kart .adresse { font-size:15px; line-height:2; color:var(--dim); }
-  #kart .reise { margin:28px 0 0; font-size:14px; line-height:1.7; color:var(--mute); max-width:40ch; }
-  #kart .kart-ph { min-height:280px; background:repeating-linear-gradient(115deg,#141210 0 12px,#191614 12px 24px); display:flex; align-items:flex-end; padding:20px; }
-  #kart .kart-ph span { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); }
+  #kart { display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px; padding:clamp(20px,3vw,32px) clamp(16px,4vw,40px); margin-top:8px; border-top:1px solid var(--line); box-sizing:border-box; font-size:13px; color:var(--mute); }
+  #kart .adresse-grp { display:flex; gap:24px; flex-wrap:wrap; }
+  #kart p.reise { margin:0; font-size:12px; color:var(--mute); max-width:40ch; }
 
-  footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; padding:24px clamp(16px,4vw,40px); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#6f665b; border-top:1px solid var(--line); }
+  footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; padding:20px clamp(16px,4vw,40px); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#6f665b; border-top:1px solid var(--line); }
 </style>
 </head>
 <body>
 <header>
   <span class="wordmark">Brautende bar</span>
   <nav class="mono">
-    <a href="#apningstider">Åpningstider</a>
-    <a href="#vegg">Veggen</a>
+    <span class="status"><span class="dot" id="dot"></span><span id="status">Åpningstider</span></span>
     <a href="#selskap">Privat leie</a>
     <a href="#kart">Finn oss</a>
   </nav>
 </header>
 
 <section id="hero">
-  <div class="hero-top">
-    <span class="pill mono" id="hero-kicker"></span>
-    <span class="status mono"><span class="dot" id="dot"></span><span id="status">Åpningstider</span></span>
-  </div>
-  <div>
-    <h1 id="hero-tittel"></h1>
-    <p class="lead" id="hero-lead"></p>
+  <div id="hero-collage"></div>
+  <div id="hero-overlay">
+    <div class="hero-top">
+      <span class="pill mono" id="hero-kicker"></span>
+    </div>
+    <div>
+      <h1 id="hero-tittel"></h1>
+      <p class="lead" id="hero-lead"></p>
+    </div>
   </div>
 </section>
 
@@ -124,34 +89,17 @@
   <div id="ticket"></div>
 </section>
 
-<section id="vegg">
-  <div class="vegg-head">
-    <h2>Veggen</h2>
-    <span class="note mono">Fra baren og fra feeden</span>
-  </div>
-  <div id="mosaic"></div>
-</section>
-
 <section id="selskap">
-  <div class="bilde" id="selskap-bilde"></div>
-  <div class="inner">
-    <div>
-      <div class="kicker mono">Privat leie</div>
-      <h2 id="selskap-tittel"></h2>
-      <p id="selskap-tekst"></p>
-    </div>
-    <div class="priser mono" id="priser"></div>
-    <a class="btn" id="epost-btn" href="#" style="align-self:flex-start">Send en forespørsel</a>
-  </div>
+  <div class="kicker mono">Privat leie</div>
+  <h2 id="selskap-tittel"></h2>
+  <p id="selskap-tekst"></p>
+  <div class="priser mono" id="priser"></div>
+  <a class="btn" id="epost-btn" href="#">Send en forespørsel</a>
 </section>
 
 <section id="kart">
-  <div class="info">
-    <h2>Finn oss</h2>
-    <div class="mono adresse" id="adresse"></div>
-    <p class="reise" id="reise"></p>
-  </div>
-  <div class="kart-ph mono"><span>plassholder — kartutsnitt eller Google Maps-embed</span></div>
+  <div class="adresse-grp mono" id="adresse"></div>
+  <p class="reise" id="reise"></p>
 </section>
 
 <footer id="footer" class="mono"></footer>
@@ -172,91 +120,32 @@ function apentNa(rader) {
 }
 const iDag = rader => rader.find(r => r.ukedager?.includes(new Date().getDay())) || null;
 
-function bakgrunn(node, src) {
-  if (!src) return;
-  const img = new Image();
-  img.onload = () => { node.style.backgroundImage = 'url(' + src + ')'; };
-  img.src = src;
-}
+const HERO_AR = ['4/3', '3/4', '9/16', '3/4', '3/4', '9/16'];
 
-function datoKort(iso) {
-  return new Date(iso).toLocaleDateString('nb-NO', { day: 'numeric', month: 'short' });
-}
-
-function mosImg(p, shape) {
-  const a = el('a', 'mos-img', '');
-  a.style.gridColumn = 'span ' + shape[0];
-  a.style.gridRow = 'span ' + shape[1];
-  a.href = p.permalink; a.target = '_blank'; a.rel = 'noopener';
-  const meta = (p.type === 'VIDEO' ? 'Reel · ' : '') + datoKort(p.timestamp);
-  const capHtml = p.caption ? '<span class="cap">' + esc(p.caption.slice(0, 100)) + '</span>' : '';
-  if (p.type === 'VIDEO' && p.video) {
-    a.innerHTML = '<video autoplay muted loop playsinline poster="' + p.bilde + '"><source src="' + p.video + '" type="video/mp4"></video>' +
-      '<span class="veil">' + capHtml + '<span class="meta mono">' + meta + '</span></span>';
-  } else {
-    a.style.backgroundImage = 'url(' + p.bilde + ')';
-    a.innerHTML = '<span class="veil">' + capHtml + '<span class="meta mono">' + meta + '</span></span>';
+function heroTile(p, i) {
+  const box = el('div', null, '');
+  box.style.aspectRatio = HERO_AR[i % HERO_AR.length];
+  if (!p) {
+    box.innerHTML = '<span class="ph-txt mono">plassholder</span>';
+    return box;
   }
-  return a;
+  if (p.type === 'VIDEO' && p.video) {
+    box.innerHTML = '<video autoplay muted loop playsinline poster="' + p.bilde + '"><source src="' + p.video + '" type="video/mp4"></video>';
+  } else {
+    box.innerHTML = '<img src="' + p.bilde + '" alt="">';
+  }
+  const a = el('a', null, box.innerHTML);
+  a.href = p.permalink; a.target = '_blank'; a.rel = 'noopener';
+  a.style.display = 'block'; a.style.width = '100%'; a.style.height = '100%';
+  box.innerHTML = '';
+  box.append(a);
+  return box;
 }
 
-function mosPlassholder(tekst, shape) {
-  const a = el('a', 'mos-img', '<span class="veil"><span class="cap">' + esc(tekst) + '</span><span class="meta mono">legges til automatisk</span></span>');
-  a.style.gridColumn = 'span ' + shape[0];
-  a.style.gridRow = 'span ' + shape[1];
-  a.href = '#instagram';
-  return a;
-}
-
-function byggTicketInline(c) {
-  const apen = apentNa(c.apningstider), dagens = iDag(c.apningstider);
-  const rows = c.apningstider.map(r => '<div class="r"><span class="ar">' + esc(r.dager) + '</span><span class="hva">' + esc(r.tid) + '</span></div>').join('');
-  const node = el('div', 'mos-text mos-hist mos-inline-only', '<div class="kicker mono">Åpningstider</div>' + rows +
-    '<div class="r" style="margin-top:6px"><span class="ar">' + (apen ? 'Åpent nå' : 'Stengt nå') + '</span><span class="hva"></span></div>');
-  return node;
-}
-
-function byggSelskapInline(c) {
-  const priser = c.selskap.priser.map(p => '<div class="r"><span class="ar">' + esc(p.hva) + '</span><span class="hva">' + esc(p.pris) + '</span></div>').join('');
-  const node = el('div', 'mos-text mos-hist mos-inline-only', '<div class="kicker mono">Privat leie</div>' +
-    '<div style="font-size:15px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px">' + esc(c.selskap.tittel) + '</div>' + priser +
-    '<a class="btn mono" style="margin-top:12px;align-self:flex-start;padding:8px 16px;font-size:12px" href="mailto:' + c.epost + '">Send en forespørsel</a>');
-  return node;
-}
-
-function tegnMosaikk(c, poster) {
-  const mosaikk = $('#mosaic');
-  mosaikk.innerHTML = '';
-  const shapes = [[1,2],[2,2],[1,3],[2,3],[1,2],[2,2]];
-
-  const manifest = el('div', 'mos-text', '');
-  manifest.style.gridColumn = 'span 2'; manifest.style.gridRow = 'span 2';
-  manifest.innerHTML = '<div class="kicker mono">Om oss</div><h3>' + esc(c.om.tittel) + '</h3>';
-  mosaikk.append(manifest);
-
-  const historie = el('div', 'mos-text mos-hist', '');
-  historie.style.gridColumn = 'span 2'; historie.style.gridRow = 'span 2';
-  historie.innerHTML = (c.om.historie || []).map(t => '<div class="r"><span class="ar">' + esc(t.ar) + '</span><span class="hva">' + esc(t.hva) + '</span></div>').join('');
-
-  const follow = el('a', 'mos-follow', '<div class="kicker mono">Mer på</div><div class="handle">@' + esc(c.instagram) + '</div><div class="go mono">Følg oss →</div>');
-  follow.href = 'https://instagram.com/' + c.instagram;
-  follow.style.gridColumn = 'span 1'; follow.style.gridRow = 'span 3';
-
-  const ticketInline = byggTicketInline(c);
-  const selskapInline = byggSelskapInline(c);
-
-  const bilder = (poster && poster.length)
-    ? poster.map((p, i) => mosImg(p, shapes[i % shapes.length]))
-    : ['Ny IPA på kran 7. Kom før den er tom.', 'Quizvinnerne fikk en pose peanøtter. Fortjent.', 'Bakrommet klart for 30 stykker i kveld.', 'Plater på anlegget til stengetid.'].map((t, i) => mosPlassholder(t, shapes[i % shapes.length]));
-
-  bilder.forEach((tile, i) => {
-    if (i === bilder.length - 1) mosaikk.append(selskapInline);
-    mosaikk.append(tile);
-    if (i === 0) mosaikk.append(ticketInline);
-    if (i === 1) mosaikk.append(historie);
-  });
-  if (bilder.length < 2) mosaikk.append(historie);
-  mosaikk.append(follow);
+function tegnHero(poster) {
+  const collage = $('#hero-collage');
+  collage.innerHTML = '';
+  for (let i = 0; i < 6; i++) collage.append(heroTile(poster?.[i], i));
 }
 
 function tegn(c, poster) {
@@ -265,8 +154,7 @@ function tegn(c, poster) {
   $('#hero-tittel').innerHTML = esc(c.navn).replace(' ', '<br />');
   $('#hero-kicker').textContent = c.kicker;
   $('#hero-lead').textContent = c.hero;
-  bakgrunn($('#hero'), poster?.[0]?.bilde);
-  bakgrunn($('#selskap-bilde'), poster?.[1]?.bilde || poster?.[0]?.bilde);
+  tegnHero(poster);
 
   const apen = apentNa(c.apningstider), dagens = iDag(c.apningstider);
   $('#dot').classList.toggle('open', !!apen);
@@ -281,17 +169,15 @@ function tegn(c, poster) {
   const folgMed = el('div', 'cell mono', '<div class="dag">Følg med</div><div class="tid"><a href="https://instagram.com/' + c.instagram + '">@' + esc(c.instagram) + ' →</a></div>');
   t.append(folgMed);
 
-  tegnMosaikk(c, poster);
-
   $('#selskap-tittel').textContent = c.selskap.tittel;
   $('#selskap-tekst').textContent = c.selskap.tekst;
   c.selskap.priser.forEach(p => $('#priser').append(el('span', null, esc(p.hva) + ' <b>' + esc(p.pris) + '</b>')));
   $('#epost-btn').href = 'mailto:' + c.epost;
 
-  $('#adresse').innerHTML = '<div>' + esc(c.adresse.gate) + '</div><div>' + esc(c.adresse.sted) + '</div>' +
-    '<div style="margin-top:18px"><a href="' + c.adresse.kart + '">Åpne i kart →</a></div>' +
-    '<div><a href="https://instagram.com/' + c.instagram + '">Instagram @' + esc(c.instagram) + ' →</a></div>' +
-    '<div><a href="mailto:' + c.epost + '">' + esc(c.epost) + '</a></div>';
+  $('#adresse').innerHTML = '<span>' + esc(c.adresse.gate) + ', ' + esc(c.adresse.sted) + '</span>' +
+    '<a href="' + c.adresse.kart + '">Åpne i kart →</a>' +
+    '<a href="https://instagram.com/' + c.instagram + '">Instagram @' + esc(c.instagram) + ' →</a>' +
+    '<a href="mailto:' + c.epost + '">' + esc(c.epost) + '</a>';
   $('#reise').textContent = c.adresse.reise;
   $('#footer').innerHTML = c.footer.map(t => '<span>' + esc(t) + '</span>').join('');
 }
