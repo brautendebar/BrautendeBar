@@ -63,21 +63,7 @@
   },
   "selskap": {
     "tittel": "Lei hele baren",
-    "tekst": "Bakrommet tar 30, hele baren tar 80. Vi fikser fatøl, pizza fra nabolaget og et anlegg du kan koble telefonen til. Ingen minstepris på tirsdager.",
-    "priser": [
-      {
-        "hva": "Bakrommet, 30 pers",
-        "pris": "fra 4 000,–"
-      },
-      {
-        "hva": "Hele baren, 80 pers",
-        "pris": "fra 12 000,–"
-      },
-      {
-        "hva": "Fatøl og mat",
-        "pris": "etter forbruk"
-      }
-    ]
+    "tekst": "Plass til opptil 50 personer. Ta kontakt, så finner vi ut av resten sammen."
   },
   "adresse": {
     "gate": "Maridalsveien 2",
